@@ -3,314 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emmanuel Oluwatobiloba Odofin | Software Engineering Student</title>
+    <title>Emmanuel Odofin - Software Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f4f4f4;
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
-
-        header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
-
-        .profile-section {
-            /* No animation */
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
-
-        h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            font-weight: 700;
+        
+        @keyframes slideInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
-
-        .title {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-            opacity: 0.95;
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
-        .mat-number {
-            font-size: 1.1em;
-            opacity: 0.9;
-            font-weight: 300;
-            letter-spacing: 1px;
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
         }
-
+        
+        .fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .slide-in-scale {
+            animation: slideInScale 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        
+        .tech-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-12px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+        }
+        
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.4);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .animated-bg {
+            background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #0a0a0a, #151515);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
         nav {
-            background: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #1e3c72;
-            font-weight: 600;
-            transition: color 0.3s ease;
-            font-size: 1.1em;
-        }
-
-        nav a:hover {
-            color: #2a5298;
-        }
-
-        .content {
-            background: white;
-            margin: 40px auto;
-            padding: 50px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .section {
-            margin: 50px 0;
-        }
-
-        h2 {
-            color: #1e3c72;
-            font-size: 2.2em;
-            margin-bottom: 25px;
-            border-bottom: 3px solid #2a5298;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-
-        .about-text {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .skill-card {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(30, 60, 114, 0.3);
-        }
-
-        .skill-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .skill-card h3 {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
-
-        .interests {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 25px;
-        }
-
-        .interest-tag {
-            background: #f0f4f8;
-            color: #1e3c72;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            border: 2px solid #2a5298;
             transition: all 0.3s ease;
         }
-
-        .interest-tag:hover {
-            background: #1e3c72;
-            color: white;
+        
+        .nav-scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3);
         }
-
-        .contact-info {
-            background: #f0f4f8;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 30px;
+        
+        html {
+            scroll-behavior: smooth;
         }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 20px 0;
-            font-size: 1.1em;
+        
+        .contact-card {
+            transition: all 0.3s ease;
         }
-
-        .contact-icon {
-            font-size: 1.5em;
-            color: #1e3c72;
-        }
-
-        .contact-item a {
-            color: #2a5298;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: #1e3c72;
-            text-decoration: underline;
-        }
-
-        footer {
-            background: #1e3c72;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            nav ul {
-                gap: 20px;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
+        
+        .contact-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container profile-section">
-            <h1>Emmanuel Oluwatobiloba Odofin</h1>
-            <p class="title">Software Engineering Student</p>
-            <p class="mat-number">MAT. NO: BU23SEN1014</p>
+<body class="animated-bg text-gray-100">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-2xl font-bold gradient-text">EO</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-purple-400 transition text-gray-200">Home</a>
+                    <a href="#about" class="hover:text-purple-400 transition text-gray-200">About</a>
+                    <a href="#tech" class="hover:text-purple-400 transition text-gray-200">Tech Stack</a>
+                    <a href="#projects" class="hover:text-purple-400 transition text-gray-200">Projects</a>
+                    <a href="#contact" class="hover:text-purple-400 transition text-gray-200">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3">
+                <a href="#home" class="block hover:text-purple-400 transition text-gray-200">Home</a>
+                <a href="#about" class="block hover:text-purple-400 transition text-gray-200">About</a>
+                <a href="#tech" class="block hover:text-purple-400 transition text-gray-200">Tech Stack</a>
+                <a href="#projects" class="block hover:text-purple-400 transition text-gray-200">Projects</a>
+                <a href="#contact" class="block hover:text-purple-400 transition text-gray-200">Contact</a>
+            </div>
         </div>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#interests">Interests</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
     </nav>
 
-    <div class="container">
-        <div class="content">
-            <section id="about" class="section">
-                <h2>About Me</h2>
-                <p class="about-text">
-                    Hello! I'm Emmanuel Oluwatobiloba Odofin, a dedicated Software Engineering student passionate about building innovative solutions through technology. I am committed to continuous learning and developing my skills in software development, problem-solving, and creating impactful digital experiences.
-                </p>
-                <p class="about-text" style="margin-top: 20px;">
-                    My journey in software engineering is driven by curiosity and a desire to understand how technology shapes our world. I believe in writing clean, efficient code and staying updated with the latest industry trends and best practices.
-                </p>
-            </section>
-
-            <section id="education" class="section">
-                <h2>Education & Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon">💻</div>
-                        <h3>Software Engineering</h3>
-                        <p>Currently pursuing a degree in Software Engineering, focusing on modern development practices and methodologies.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🚀</div>
-                        <h3>Problem Solving</h3>
-                        <p>Strong analytical and problem-solving skills developed through academic projects and continuous learning.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🌐</div>
-                        <h3>Web Development</h3>
-                        <p>Experience in creating responsive and user-friendly web applications using modern technologies.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="interests" class="section">
-                <h2>Interests & Hobbies</h2>
-                <p class="about-text">Beyond academics, I enjoy various activities that help me maintain balance and develop different skills:</p>
-                <div class="interests">
-                    <div class="interest-tag">🏓 Table Tennis</div>
-                    <div class="interest-tag">💻 Coding</div>
-                    <div class="interest-tag">📚 Technology Trends</div>
-                    <div class="interest-tag">🎯 Problem Solving</div>
-                    <div class="interest-tag">🌱 Continuous Learning</div>
-                </div>
-            </section>
-
-            <section id="contact" class="section">
-                <h2>Get In Touch</h2>
-                <p class="about-text">I'm always open to discussing new opportunities, collaborations, or just connecting with fellow tech enthusiasts. Feel free to reach out!</p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <span>Email: <a href="mailto:odofinemmanuel33@gmail.com">odofinemmanuel33@gmail.com</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">💼</span>
-                        <span>LinkedIn: <a href="#" id="linkedin-link">Connect with me on LinkedIn</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🐙</span>
-                        <span>GitHub: <a href="https://github.com/oddemmy" target="_blank">@oddemmy</a></span>
-                    </div>
-                </div>
-            </section>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 px-6">
+        <div class="container mx-auto text-center">
+            <div class="fade-in-up">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                    Hi, I'm <span class="gradient-text">Emmanuel Oluwatobiloba Odofin</span>
+                </h1>
+            </div>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 fade-in-up delay-100">
+                Aspiring Software Developer | Software Engineering Student
+            </p>
+            <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto fade-in-up delay-200 float">
+                Building innovative solutions with modern technologies
+            </p>
+            <div class="flex justify-center gap-4 fade-in-up delay-300">
+                <a href="#projects" class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-500 hover:scale-105 transition transform">
+                    View Projects
+                </a>
+                <a href="#contact" class="border-2 border-purple-500 text-purple-400 px-8 py-3 rounded-lg hover:bg-purple-500 hover:text-white transition">
+                    Contact Me
+                </a>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Emmanuel Oluwatobiloba Odofin. All rights reserved.</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Built with passion for learning and technology.</p>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-black bg-opacity-50">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text fade-in-up">About Me</h2>
+            <div class="text-lg text-gray-300 leading-relaxed space-y-6">
+                <p class="fade-in-left delay-100">
+                    I'm a passionate software engineering student at Bowen University with a deep interest in building 
+                    scalable web applications and exploring cutting-edge technologies. My journey in software development 
+                    has equipped me with hands-on experience in full-stack development, blockchain technologies, and 
+                    modern DevOps practices.
+                </p>
+                <p class="fade-in-left delay-200">
+                    With 2 years of experience in software development, I've worked on various projects ranging from 
+                    web applications to blockchain solutions. I'm constantly learning and adapting to new technologies 
+                    to create efficient, user-friendly solutions that make a real impact.
+                </p>
+                <p class="fade-in-left delay-300">
+                    When I'm not coding, I enjoy contributing to open-source projects, staying updated with the latest 
+                    tech trends, and collaborating with fellow developers to build amazing things.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text fade-in-up">Tech Stack</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale">
+                    <div class="text-4xl mb-3">🌐</div>
+                    <h3 class="font-semibold text-lg text-gray-200">HTML</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-100">
+                    <div class="text-4xl mb-3">🎨</div>
+                    <h3 class="font-semibold text-lg text-gray-200">Tailwind CSS</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-200">
+                    <div class="text-4xl mb-3">⚡</div>
+                    <h3 class="font-semibold text-lg text-gray-200">JavaScript</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-300">
+                    <div class="text-4xl mb-3">🔷</div>
+                    <h3 class="font-semibold text-lg text-gray-200">MongoDB</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-400">
+                    <div class="text-4xl mb-3">🟢</div>
+                    <h3 class="font-semibold text-lg text-gray-200">Express.js</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-500">
+                    <div class="text-4xl mb-3">⚛️</div>
+                    <h3 class="font-semibold text-lg text-gray-200">React</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-600">
+                    <div class="text-4xl mb-3">📗</div>
+                    <h3 class="font-semibold text-lg text-gray-200">Node.js</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale">
+                    <div class="text-4xl mb-3">🔗</div>
+                    <h3 class="font-semibold text-lg text-gray-200">Web3.js</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-100">
+                    <div class="text-4xl mb-3">🦀</div>
+                    <h3 class="font-semibold text-lg text-gray-200">Rust</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-200">
+                    <div class="text-4xl mb-3">🐳</div>
+                    <h3 class="font-semibold text-lg text-gray-200">Docker</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-300">
+                    <div class="text-4xl mb-3">🐧</div>
+                    <h3 class="font-semibold text-lg text-gray-200">Linux</h3>
+                </div>
+                <div class="tech-card bg-gray-900 bg-opacity-60 p-6 rounded-lg shadow-lg text-center border border-gray-800 slide-in-scale delay-400">
+                    <div class="text-4xl mb-3">📚</div>
+                    <h3 class="font-semibold text-lg text-gray-200">Git & GitHub</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-black bg-opacity-50">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text fade-in-up">Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="project-card bg-gray-900 bg-opacity-70 p-8 rounded-lg shadow-lg border border-gray-800 fade-in-right">
+                    <h3 class="text-2xl font-bold mb-3 text-purple-400">SLG Coin</h3>
+                    <p class="text-gray-300 mb-4">
+                        A cryptocurrency platform built with blockchain technology, featuring secure transactions 
+                        and modern UI/UX design.
+                    </p>
+                    <a href="https://slgcoin.vercel.app" target="_blank" 
+                       class="text-purple-400 hover:text-purple-300 font-semibold inline-flex items-center transition">
+                        View Project →
+                    </a>
+                </div>
+                
+                <div class="project-card bg-gray-900 bg-opacity-70 p-8 rounded-lg shadow-lg border border-gray-800 fade-in-left delay-100">
+                    <h3 class="text-2xl font-bold mb-3 text-purple-400">Enoba</h3>
+                    <p class="text-gray-300 mb-4">
+                        A comprehensive web application showcasing modern design principles and responsive 
+                        user interfaces.
+                    </p>
+                    <a href="https://enoba.vercel.app" target="_blank" 
+                       class="text-purple-400 hover:text-purple-300 font-semibold inline-flex items-center transition">
+                        View Project →
+                    </a>
+                </div>
+                
+                <div class="project-card bg-gray-900 bg-opacity-70 p-8 rounded-lg shadow-lg border border-gray-800 fade-in-right delay-200">
+                    <h3 class="text-2xl font-bold mb-3 text-purple-400">EminentX</h3>
+                    <p class="text-gray-300 mb-4">
+                        An innovative platform leveraging cutting-edge web technologies to deliver exceptional 
+                        user experiences.
+                    </p>
+                    <a href="https://eminentx.vercel.app" target="_blank" 
+                       class="text-purple-400 hover:text-purple-300 font-semibold inline-flex items-center transition">
+                        View Project →
+                    </a>
+                </div>
+                
+                <div class="project-card bg-gray-900 bg-opacity-70 p-8 rounded-lg shadow-lg border border-gray-800 fade-in-left delay-300">
+                    <h3 class="text-2xl font-bold mb-3 text-purple-400">Task Management System</h3>
+                    <p class="text-gray-300 mb-4">
+                        A full-stack MERN application for task management with user authentication, real-time 
+                        updates, and intuitive dashboard.
+                    </p>
+                    <span class="text-gray-400 font-semibold">In Development</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto max-w-4xl">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in-left">
+                    <h2 class="text-3xl font-bold mb-6 gradient-text">Experience</h2>
+                    <div class="bg-gray-900 bg-opacity-70 p-6 rounded-lg shadow-lg border border-gray-800 hover:border-purple-500 transition">
+                        <h3 class="text-xl font-bold mb-2 text-purple-400">Software Developer</h3>
+                        <p class="text-purple-300 mb-3">2 Years</p>
+                        <p class="text-gray-300">
+                            Developed and deployed multiple web applications using MERN stack, implemented 
+                            blockchain solutions, and collaborated on various open-source projects.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="fade-in-right delay-100">
+                    <h2 class="text-3xl font-bold mb-6 gradient-text">Education</h2>
+                    <div class="bg-gray-900 bg-opacity-70 p-6 rounded-lg shadow-lg border border-gray-800 hover:border-purple-500 transition">
+                        <h3 class="text-xl font-bold mb-2 text-purple-400">Bachelor of Software Engineering</h3>
+                        <p class="text-purple-300 mb-3">Bowen University</p>
+                        <p class="text-gray-300">Currently Pursuing</p>
+                        <p class="text-gray-300 mt-3">
+                            Focusing on software development, algorithms, data structures, and modern 
+                            web technologies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-black bg-opacity-50">
+        <div class="container mx-auto max-w-3xl">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text fade-in-up">Get In Touch</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <a href="https://www.linkedin.com/in/emmanuel-odofin-1655a02a9" target="_blank"
+                   class="contact-card flex items-center gap-4 bg-gray-900 bg-opacity-70 p-6 rounded-lg hover:shadow-2xl transition border border-gray-800 slide-in-scale">
+                    <div class="text-3xl">💼</div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-purple-400">LinkedIn</h3>
+                        <p class="text-gray-300">Connect with me</p>
+                    </div>
+                </a>
+                
+                <a href="mailto:odofinemmanuel33@gmail.com"
+                   class="contact-card flex items-center gap-4 bg-gray-900 bg-opacity-70 p-6 rounded-lg hover:shadow-2xl transition border border-gray-800 slide-in-scale delay-100">
+                    <div class="text-3xl">📧</div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-purple-400">Email</h3>
+                        <p class="text-gray-300">odofinemmanuel33@gmail.com</p>
+                    </div>
+                </a>
+                
+                <a href="https://x.com/odd_emmy" target="_blank"
+                   class="contact-card flex items-center gap-4 bg-gray-900 bg-opacity-70 p-6 rounded-lg hover:shadow-2xl transition border border-gray-800 slide-in-scale delay-200">
+                    <div class="text-3xl">🐦</div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-purple-400">X (Twitter)</h3>
+                        <p class="text-gray-300">@odd_emmy</p>
+                    </div>
+                </a>
+                
+                <a href="https://github.com/oddemmy" target="_blank"
+                   class="contact-card flex items-center gap-4 bg-gray-900 bg-opacity-70 p-6 rounded-lg hover:shadow-2xl transition border border-gray-800 slide-in-scale delay-300">
+                    <div class="text-3xl">💻</div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-purple-400">GitHub</h3>
+                        <p class="text-gray-300">@oddemmy</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 px-6 border-t border-gray-800">
+        <div class="container mx-auto text-center">
+            <p class="mb-4 text-gray-300">© 2024 Emmanuel Oluwatobiloba Odofin. All rights reserved.</p>
+            <p class="text-gray-500">Built with passion and modern web technologies</p>
         </div>
     </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.tech-card, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
